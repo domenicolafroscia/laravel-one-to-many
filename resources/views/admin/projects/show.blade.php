@@ -11,6 +11,10 @@
 
         <h2>{{ $project->title }}</h2>
 
+        <p>
+            Type: {{ $project->type ? $project->type->name : 'No type'}}
+        </p>
+
         @if ($project->cover_image)
             <div>
                 <img src="{{ asset('storage/' . $project->cover_image) }}" alt="">

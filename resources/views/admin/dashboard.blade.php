@@ -14,8 +14,8 @@
                             </div>
                         @endif
 
-                        <h2>Ciao {{ Auth::user()->name }}! Benvenuto nel tuo portfolio.</h2>
-                        <p>La tua email è {{ Auth::user()->email }}</p>
+                        <h2>Hello {{ Auth::user()->name }}! Welcome to your portfolio.</h2>
+                        <p>Your email is {{ Auth::user()->email }}</p>
                     </div>
                 </div>
             </div>
