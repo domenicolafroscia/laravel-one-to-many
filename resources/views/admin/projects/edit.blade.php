@@ -4,7 +4,8 @@
     <div class="container mt-5">
         <h2>Edit project: {{ $project->title }}</h2>
 
-        <form action="{{ route('admin.projects.update', ['project' => $project->slug]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.projects.update', ['project' => $project->slug]) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -31,7 +32,8 @@
 
             <div class="mb-3">
                 <label for="cover_image" class="form-label">Image</label>
-                <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" value="{{ old('cover_image', $project->cover_image) }}">
+                <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image"
+                    name="cover_image" value="{{ old('cover_image', $project->cover_image) }}">
                 @error('cover_image')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -47,6 +49,17 @@
 
             <div class="mb-3">
                 <img id="preview-img" src="" alt="" style="max-height: 250px">
+            </div>
+
+            <div class="mb-3">
+                <label for="type">Select type</label>
+                <select class="form-select" name="type_id" id="type">
+                    <option @selected(!old('type_id', $project->type_id)) value="">No type</option>
+                    @foreach ($types as $type)
+                        <option @selected(old('type_id', $project->type_id) == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>
+
             </div>
 
             <div class="actions">

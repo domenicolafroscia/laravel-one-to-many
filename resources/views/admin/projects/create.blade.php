@@ -47,6 +47,21 @@
                 <img id="preview-img" src="" alt="" style="max-height: 250px">
             </div>
 
+            <div class="mb-3 has-validation">
+                <label for="type">Select type</label>
+                <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type">
+                    <option @selected(!old('type_id')) value="">No type</option>
+                    @foreach ($types as $type)
+                        <option @selected(old('type_id') == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>
+                @error('type_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
             <button class="btn btn-success" type="submit">Save</button>
             <a class="btn btn-danger" href="{{ url()->previous() }}">Back</a>
 
