@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TrashedController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('trashed', [TrashedController::class, 'index'])->name('projects.trashed');
         Route::put('restore/{id}', [TrashedController::class, 'restore'])->name('projects.restore');
         Route::delete('defDestroy/{id}', [TrashedController::class, 'defDestroy'])->name('projects.defDestroy');
+        Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
     });
 
 require __DIR__.'/auth.php';
