@@ -64,7 +64,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        // dd($project);
         return view('admin.projects.show', compact('project'));
+
     }
 
     /**
@@ -112,8 +114,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $project->delete();
         Storage::delete($project->cover_image);
+        $project->delete();
+        
 
         return redirect()->route('admin.projects.index')->with('message', 'The project: ' . '"' . $project->title . ':' . '"' . ' ' . 'has been moved to the trash');
     }

@@ -44,12 +44,12 @@ class TypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
     }
 
     /**
